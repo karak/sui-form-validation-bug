@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.js"></script>
+    <link  rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.css" />
+  </head>
+  <body>
+    <ol>
+      <li>Focus 'Name' and <strong>hit Enter key</strong> to invalidate.</li>
+      <li>Select 'M' to validate.</li>
+      <li>Press 'Submit' button or hit the key. => No reaction!</li>
+    </ol>
+    <p>
+      Not reproduced when replacing 1 by Press the button.
+    </p>
+    <form id="form" class="ui form">
+      <div class="field">
+        <label>Name:</label>
+        <input name="name"/>
+      </div>
+      <div class="inline fields">
+        <label>Sex</label>
+        <div class="field">
+          <div class="ui radio">
+            <input type="radio" name="sex" value="M">
+            <label>M</label>
+          </div>
+        </div>
+        <div class="field">
+          <div class="ui radio">
+            <input type="radio" name="sex" value="F">
+            <label>F</label>
+          </div>
+        </div>
+      </div>
+      <button type="submit">Submit</button>
+    </form>
+    <script src="./bundle.js"></script>
+  </body>
+</html>

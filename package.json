@@ -1,0 +1,27 @@
+{
+  "name": "sui-form-validation-bug",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "postinstall": "selenium-standalone install",
+    "start": "webpack-dev-server",
+    "test": "./node_modules/.bin/wdio wdio.conf.js"
+  },
+  "devDependencies": {
+    "chromedriver": "^2.35.0",
+    "html-webpack-plugin": "^2.30.1",
+    "iedriver": "^3.5.1",
+    "jshint": "^2.9.5",
+    "wdio-chromedriver-service": "^0.1.2",
+    "wdio-dot-reporter": "0.0.9",
+    "wdio-firefox-profile-service": "^0.1.1",
+    "wdio-iedriver-service": "^0.1.0",
+    "wdio-jasmine-framework": "^0.3.2",
+    "wdio-selenium-standalone-service": "0.0.9",
+    "wdio-webpack-dev-server-service": "^1.2.0",
+    "webdriverio": "^4.10.1",
+    "webpack": "^3.10.0",
+    "webpack-dev-server": "^2.11.1"
+  }
+}
