@@ -52,7 +52,7 @@ exports.config = {
         },
     }, {
         browserName: 'internet explorer',
-        platform: 'Windows 10',
+        platform: 'windows',
         version: '11'
     }],
     //
