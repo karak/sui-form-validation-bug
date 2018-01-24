@@ -32,15 +32,25 @@ describe('Index page', () => {
     // IE11 doesn't show 'Success' because `onSuccess` isn't called -- bug of SUI!
     expect(page.resultText).toBe('');
 
-    page.hitEnterKeyOnNameInput();
+    page.hitEnterKeyOnNameInput(); // submit 1st
 
     expect(page.formIsInvalid).toBeTruthy('Form must be invalid');
     expect(page.maleRadioIsInvalid).toBeTruthy('Male radio must be invalid');
     expect(page.femaleRadioIsInvalid).toBeTruthy('Female radio must be invalid');
 
+    expect(page.resultText).not.toBe('Success');
+    switch (browser.options.desiredCapabilities.browserName) {
+    case 'chrome': // Chrome doesn't change the result!
+      expect(page.resultText).toBe('');
+      break;
+    default:
+      expect(page.resultText).toBe('Failure');
+      break;
+    }
+
     page.clickMaleRadio();
 
-    page.clickSubmitButton();
+    page.clickSubmitButton(); // submit 2nd
 
     expect(page.formIsInvalid).toBeFalsy('Form must be valid');
     expect(page.maleRadioIsInvalid).toBeFalsy('Male radio must be valid');

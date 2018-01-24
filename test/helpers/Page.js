@@ -48,10 +48,12 @@ class Page {
  * SEE: https://sqa.stackexchange.com/questions/22259/how-to-send-an-enter-using-webdriverio
  */
 function setEmptyAndSendEnterKey(browser, element) {
-  if (browser.options.desiredCapabilities.browserName == 'MicrosoftEdge') {
+  switch (browser.options.desiredCapabilities.browserName) {
+  case 'MicrosoftEdge':
     element.setValue('');
     browser.keys('\uE007'); // Firefox doesn't support this protocol.
-  } else {
+    break;
+  default:
     element.setValue('\n');
   }
 }
