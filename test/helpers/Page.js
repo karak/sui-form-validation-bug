@@ -4,6 +4,7 @@
 
 const MALE_RADIO = '.ui.radio input[type="radio"][value="M"]';
 const FEMALE_RADIO = '.ui.radio input[type="radio"][value="F"]';
+const RESULT_SPAN = '#result';
 
 class Page {
   open() {
@@ -28,6 +29,10 @@ class Page {
 
   get femaleRadioIsInvalid() {
     return browser.isExisting(`#form .field.error ${FEMALE_RADIO}`);
+  }
+
+  get resultText() {
+    return browser.getText(RESULT_SPAN);
   }
 }
 

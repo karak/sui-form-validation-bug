@@ -1,6 +1,9 @@
 $(function () {
   $('form').on('submit', function(e) {
     if ('originalEvent' in e) {
+      // clear result
+      $('#result').html('');
+
       /*
        * Execute only at the 2nd onsubmit wrapped by semantic-ui,
        * since <Enter> causes *twice* onsubmit calls in Chrome with different argument.
@@ -23,13 +26,16 @@ $(function () {
       /*
        * Never called after being invalid by <Enter> on IE.
        */
-      console.log('onSuccess');
+
+      // set result
+      $('#result').text('Success');
     },
     onFailure: function () {
       /*
        * Never called after being invalid by <Enter> on IE.
        */
-      console.log('onFailure');
+      // set result
+      $('#result').text('Failure');
     }
   });
 });
