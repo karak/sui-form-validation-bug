@@ -12,6 +12,10 @@ class Page {
     browser.url('/index.html');
   }
 
+  refresh() {
+    browser.refresh();
+  }
+
   /** set <input name="name"> empty and then send Enter key. */
   hitEnterKeyOnNameInput() {
     // browser.keys('Enter');

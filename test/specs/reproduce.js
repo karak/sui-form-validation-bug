@@ -3,8 +3,12 @@ const Page = require('../helpers/Page');
 describe('Index page', () => {
   const page = new Page();
 
-  beforeEach(() => {
+  beforeAll(() => {
     page.open();
+  });
+
+  beforeEach(() => {
+    page.refresh();
   });
 
   it('validates form after once invalidated by Submit button', () => {
@@ -38,15 +42,7 @@ describe('Index page', () => {
     expect(page.maleRadioIsInvalid).toBeTruthy('Male radio must be invalid');
     expect(page.femaleRadioIsInvalid).toBeTruthy('Female radio must be invalid');
 
-    expect(page.resultText).not.toBe('Success');
-    switch (browser.options.desiredCapabilities.browserName) {
-    case 'chrome': // Chrome doesn't change the result!
-      expect(page.resultText).toBe('');
-      break;
-    default:
-      expect(page.resultText).toBe('Failure');
-      break;
-    }
+    expect(page.resultText).toBe('Failure');
 
     page.clickMaleRadio();
 
