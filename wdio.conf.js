@@ -1,3 +1,48 @@
+// Browser selecting ...
+const browsers = (function () {
+  const result = [
+    'chrome',
+    'firefox',
+  ];
+
+  if (process.platform === 'win32') {
+    result.push('ie');
+  }
+  return result;
+}());
+
+// Capability and dependent driver service for each browsers
+const browserSettings = {
+  chrome: {
+    capability: {
+      browserName: 'chrome',
+      chromeOptions: {
+          args: ['--headless', '--disable-gpu'],
+      },
+    },
+    service: 'chromedriver',
+  },
+  firefox: {
+    capability: {
+      // maxInstances can get overwritten per capability. So if you have an in-house Selenium
+      // grid with only 5 firefox instances available you can make sure that not more than
+      // 5 instances get started at a time.
+      maxInstances: 5,
+      //
+      browserName: 'firefox'
+    },
+    service: 'firefox-profile'
+  },
+  ie: {
+    capability: {
+      browserName: 'internet explorer',
+      platform: 'windows',
+      version: '11'
+    },
+    service: 'iedriver'
+  }
+};
+
 exports.config = {
 
     //
@@ -38,23 +83,7 @@ exports.config = {
     // Sauce Labs platform configurator - a great tool to configure your capabilities:
     // https://docs.saucelabs.com/reference/platforms-configurator
     //
-    capabilities: [{
-        // maxInstances can get overwritten per capability. So if you have an in-house Selenium
-        // grid with only 5 firefox instances available you can make sure that not more than
-        // 5 instances get started at a time.
-        maxInstances: 5,
-        //
-        browserName: 'firefox'
-    }, {
-        browserName: 'chrome',
-        chromeOptions: {
-            args: ['--headless', '--disable-gpu'],
-        },
-    }, /*{
-        browserName: 'internet explorer',
-        platform: 'windows',
-        version: '11'
-    }*/],
+    capabilities: browsers.map(x => browserSettings[x].capability),
     //
     // ===================
     // Test Configurations
@@ -120,7 +149,7 @@ exports.config = {
     // Services take over a specific job you don't want to take care of. They enhance
     // your test setup with almost no effort. Unlike plugins, they don't add new
     // commands. Instead, they hook themselves up into the test process.
-    services: ['selenium-standalone','webpack-dev-server', 'firefox-profile', 'chromedriver', /*'iedriver'*/],
+    services: ['selenium-standalone','webpack-dev-server'].concat(browsers.map(x => browserSettings[x].service)),
     //
     // Framework you want to run your specs with.
     // The following are supported: Mocha, Jasmine, and Cucumber
